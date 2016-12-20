@@ -1,25 +1,30 @@
-﻿using System;
+﻿using Read_OnlyWebAPI.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Http;
 using System.Web.Mvc;
 
 namespace Read_OnlyWebAPI.Controllers
 {
-    public class ContactController : Controller
-    {
-        // GET: Contact
-        public ActionResult Index()
-        {
-            return View();
-        }
+    public class ContactController : ApiController
+    {       
+        //public string[] Get()
+        //{
+        //    return new string[]
+        //    {
+        //        "Hello",
+        //        "World"
+        //    };
+        //}
 
-        public string[] Get()
+        public Contact[] Get()
         {
-            return new string[]
+            return new Contact[]
             {
-                "Hello",
-                "World"
+                new Contact {Id=1,Name="Ali KÖPRÜLÜ" },
+                new Contact {Id=2,Name="Dan Roth" }
             };
         }
     }
