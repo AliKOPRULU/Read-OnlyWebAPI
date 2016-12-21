@@ -28,7 +28,7 @@ namespace Read_OnlyWebAPI.Services
             }
         }
 
-        public Contact[] GetAllContacts()
+        public Contact[] GetAllContacts()//03
         {
             var ctx = HttpContext.Current;
 
@@ -44,6 +44,29 @@ namespace Read_OnlyWebAPI.Services
                     Name="Placeholder"
                 }
             };
+        }
+
+        public bool SaveContact(Contact contact)//work of saving a contact. 
+        {
+            var ctx = HttpContext.Current;
+
+            if (ctx != null)
+            {
+                try
+                {
+                    var currentData = ((Contact[])ctx.Cache[CacheKey]).ToList();
+                    currentData.Add(contact);
+                    ctx.Cache[CacheKey] = currentData.ToArray();
+
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                    return false;
+                }
+            }
+            return false;
         }
 
         //public Contact[] GetAllContact()//Ex01
